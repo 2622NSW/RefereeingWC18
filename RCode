@@ -1,0 +1,23 @@
+# Referee profile for ball in play
+library (ggplot2)
+library (ggrepel)
+df <- read.csv("Referee23.csv")
+ggplot(df, aes(x=GameID, y=PlayingTime, label=Referee)) + geom_point(colour="darkblue", size=2) +
+  geom_smooth(method = "loess", colour="firebrick", size=1) +
+  ggtitle("Referees at the 2018 FIFA World Cup", subtitle = "Ball in Play Times (23 games)") +xlab("Game Number") + ylab("Ball in Play (Minutes)") +
+  xlim(1,23) +
+  ylim(40,70)+
+  geom_label_repel(size=3) +
+  theme_minimal()
+  
+# Foul profiles
+# library as above, df as above
+ggplot(df, aes(x=GameID, y=Fouls, label=Referee)) + geom_point(colour="firebrick", size=2) +
+  geom_smooth(method = "loess", colour="blue", size=1) +
+  ggtitle("Referees at the 2018 FIFA World Cup", subtitle = "Fouls (23 games)") +xlab("Game Number") + ylab("Fouls") +
+  xlim(1,23) +
+  ylim(0,40)+
+  geom_label_repel(size=3) +
+  theme_minimal()
+  
+  # Note I did try geom_smooth(method = "glm", colour="blue", size=1) and geom_smooth(method = "lm", colour="blue", size=1) too.
